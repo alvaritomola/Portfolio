@@ -1,0 +1,324 @@
+:root {
+  --color-bg: #f4f7fb;
+  --color-text: #1f2937;
+
+  --color-primary: #2563eb;
+  --color-secondary: #3b82f6;
+  --color-accent: #60a5fa;
+
+  --color-card: #ffffff;
+  --color-muted: #6b7280;
+
+  --color-dark: #1e3a8a;
+  --color-dark-hover: #2a4cb0;
+  --color-border: #dbeafe;
+  --color-border-light: #e5e7eb;
+  --color-shadow: rgba(0, 0, 0, 0.05);
+
+  --color-light-text: #f5f6fa;
+  --color-subtle-text: #e0e7ff;
+  --color-light-gray: #f5f5f5;
+  --color-nav-bg: #1f1f1f;
+  --color-job-text: #e5eaf3;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+  color: var(--color-text);
+  background: linear-gradient(180deg, #eaf2fb 0%, var(--color-bg) 100%);
+}
+/* ========================= */
+/* ======= NAVEGACIÓN ====== */
+/* ========================= */
+
+nav {
+  position: sticky;
+  top: 0;
+  background: var(--color-nav-bg);
+  padding: 0.8rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+}
+
+/* botón hamburguesa oculto en escritorio */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.6); /* ✅ gris/negro semitransparente */
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+
+/* enlaces visibles en escritorio */
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--color-light-gray);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--color-primary);
+}
+
+.nav-links a.active {
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+/* ======== versión móvil (oculto por defecto) ======== */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1100;
+    color: rgba(0,0,0,0.6); /* gris suave */
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-nav-bg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: 100%;
+    padding: 2rem 1rem;
+    gap: 1rem;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+
+    /* 🪄 animación inicial oculta */
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.4s ease, opacity 0.5s ease;
+  }
+
+  .nav-links.show {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all; /* reactiva los clics */
+  }
+
+  .nav-links a {
+    text-align: left;
+    padding: 0.8rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+}
+
+
+/* ========================= */
+/* ======== HEADER ========= */
+/* ========================= */
+
+header {
+  background: var(--color-primary);
+  color: var(--color-light-text);
+  padding: 2.5rem 1rem;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.8rem;
+  color: var(--color-light-text);
+}
+
+header p {
+  margin: 0.5rem 0 0;
+  font-size: 1.2rem;
+  color: var(--color-subtle-text);
+}
+
+/* ========================= */
+/* ======== SECCIONES ====== */
+/* ========================= */
+
+section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: var(--color-card);
+  border-radius: 12px;
+  border: 1px solid var(--color-border-light);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+section:target h2 {
+  color: var(--color-primary);
+}
+
+/* ======== TÍTULOS ======== */
+h2 {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+  padding-bottom: 0.3rem;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 40px;
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+
+/* ========================= */
+/* ====== PROYECTOS ========= */
+/* ========================= */
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.project-card {
+  background: var(--color-dark);
+  color: var(--color-light-text);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px var(--color-shadow);
+  transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  background: var(--color-secondary);
+  border: 1px solid var(--color-accent);
+}
+
+/* ========================= */
+/* ==== EXPERIENCIA / ESTUDIOS ==== */
+/* ========================= */
+
+.job,
+.education {
+  background: var(--color-dark);
+  color: var(--color-job-text);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 6px var(--color-shadow);
+  transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+  border-left: 4px solid var(--color-primary);
+}
+
+.job:hover,
+.education:hover {
+  transform: translateY(-5px);
+  background: var(--color-dark-hover);
+  border-left-color: var(--color-accent);
+}
+
+.job h3,
+.education h3 {
+  margin-top: 0;
+  color: var(--color-light-text);
+}
+
+.job p,
+.education p {
+  margin: 0.3rem 0;
+  line-height: 1.4;
+}
+
+/* ========================= */
+/* ===== LINKS Y FOOTER ===== */
+/* ========================= */
+
+a {
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--color-dark);
+  color: var(--color-light-text);
+  margin-top: 2rem;
+}
+
+/* ========================= */
+/* ===== RESPONSIVE TEXTO === */
+/* ========================= */
+
+@media (max-width: 375px) {
+  body {
+    font-size: 14px;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .job,
+  .education,
+  section {
+    padding: 0.8rem 1rem;
+  }
+}
+
+@media (max-width: 425px) {
+  body {
+    font-size: 15px;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  .job,
+  .education,
+  section {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .job,
+  .education,
+  section {
+    padding: 1rem 1.2rem;
+  }
+}
